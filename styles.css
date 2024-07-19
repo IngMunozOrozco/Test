@@ -34,3 +34,11 @@ button:hover {
     font-size: 18px;
     font-weight: bold;
 }
+
+.correct {
+    background-color: rgb(85, 0, 223);
+}
+
+.incorrect {
+    background-color: lightcoral;
+}

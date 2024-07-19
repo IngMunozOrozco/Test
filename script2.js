@@ -1,5 +1,3 @@
-let timerInterval;
-
 document.addEventListener('DOMContentLoaded', function () {
     // Inicializar el cronómetro
     let timeRemaining = 50 * 60; // 50 minutos en segundos
@@ -14,12 +12,13 @@ document.addEventListener('DOMContentLoaded', function () {
             timeRemaining--;
         } else {
             clearInterval(timerInterval);
+            // Aquí puedes manejar la lógica cuando el tiempo se acabe (por ejemplo, enviar el formulario automáticamente)
             alert("Time is up!");
             document.getElementById('quizForm').submit(); // Enviar el formulario automáticamente cuando el tiempo se agote
         }
     }
 
-    timerInterval = setInterval(updateTimer, 1000);
+    const timerInterval = setInterval(updateTimer, 1000);
 });
 
 function showPage(pageNumber) {
@@ -30,9 +29,6 @@ function showPage(pageNumber) {
 
 document.getElementById('quizForm').addEventListener('submit', function(event) {
     event.preventDefault();
-    
-    // Detener el cronómetro
-    clearInterval(timerInterval);
 
     const correctAnswers = {
         'q1-1': 'Robert is the new roommate of Billy.',
@@ -66,17 +62,7 @@ document.getElementById('quizForm').addEventListener('submit', function(event) {
         'q4-3': 'Anthony.',
         'q4-4': 'dad goes to work.',
         'q4-5': 'Sanson.',
-        'q4-6': 'at seven o clock in the evening.',
-        'q5-1': 'job',
-        'q5-2': 'british',
-        'q5-3': 'father',
-        'q5-4': 'school',
-        'q5-5': 'writer',
-        'q5-6': 'lawyer',
-        'q5-7': 'friends',
-        'q5-8': 'onions',
-        'q5-9': 'house',
-        'q5-10': 'breakfast'
+        'q4-6': 'at seven o clock in the evening.'
     };
 
     const formElements = document.getElementById('quizForm').elements;
@@ -94,15 +80,6 @@ document.getElementById('quizForm').addEventListener('submit', function(event) {
         }
     }
 
-    const formData = new FormData(event.target);
-    let score = 0;
-    let total = 100; // Ajustar según el número total de preguntas
-    
-    for (let [name, value] of formData.entries()) {
-        if (correctAnswers[name] === value.trim()) {
-            score = score + 2.38095238095238;
-        }
-    }
-
-    document.getElementById('result').innerText = `Your score is: ${Math.round(score)}/${total}`;
+    // Mostrar un mensaje o resultado si lo deseas
+    document.getElementById('result').innerText = 'Quiz submitted! Check the colors to see your correct and incorrect answers.';
 });
